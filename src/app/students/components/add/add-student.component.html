@@ -1,3 +1,74 @@
-<div>
-  <h2>Add Student</h2>
+<div class="add-student-container">
+  <form (ngSubmit)="addStudent()" #studentForm="ngForm" novalidate>
+
+    <h2>Add New Student</h2>
+
+    <label>Student ID: <span class="required">*</span></label>
+    <input type="text" name="studentId" [(ngModel)]="newStudent.studentId" required pattern="SID-[A-Z0-9]{8}"
+      placeholder="e.g. SID-8CH7Y3D2" #studentId="ngModel" />
+    <small class="error" *ngIf="studentId.invalid && studentId.touched">
+      Format: SID-XXXXXXXX
+    </small>
+
+    <label>Full Name: <span class="required">*</span></label>
+    <input type="text" name="fullName" [(ngModel)]="newStudent.fullName" required pattern="[A-Z][a-z]+ [A-Z][a-z]+"
+      (ngModelChange)="generateEmailFromName($event)" placeholder="e.g. John Doe" #fullName="ngModel" />
+    <small class="error" *ngIf="fullName.invalid && fullName.touched">
+      Format: Firstname Lastname
+    </small>
+
+    <label>Email: <span class="required">*</span></label>
+    <input type="email" name="email" [(ngModel)]="newStudent.email" required readonly
+      placeholder="e.g. john.doe@university.edu" #email="ngModel" />
+    <small class="error">
+      Format: firstname.lastname&#64;university.edu
+    </small>
+
+
+    <label>Phone Number: <span class="required">*</span></label>
+    <input type="tel" name="phoneNumber" [(ngModel)]="newStudent.phoneNumber" required placeholder="e.g. 041 123 456"
+      #phone="ngModel" />
+    <small class="error" *ngIf="phone.invalid && phone.touched">
+      Phone number is required.
+    </small>
+
+    <label>Date of Birth: <span class="required">*</span></label>
+    <input type="date" name="dateOfBirth" [(ngModel)]="newStudent.dateOfBirth" required [max]="maxDob" [min]="minDob"
+      #dob="ngModel" />
+    <small class="error" *ngIf="dob.invalid && dob.touched">
+      Valid date of birth required.
+    </small>
+
+    <label>Gender: <span class="required">*</span></label>
+    <select name="gender" [(ngModel)]="newStudent.gender" required #gender="ngModel">
+      <option value="Male">Male</option>
+      <option value="Female">Female</option>
+      <option value="Does Not Specify">Does Not Specify</option>
+    </select>
+    <small class="error" *ngIf="gender.invalid && gender.touched">
+      Please select a gender.
+    </small>
+
+    <label>Enrollment Date: <span class="required">*</span></label>
+    <input type="date" name="enrollmentDate" [(ngModel)]="newStudent.enrollmentDate" required #enrollDate="ngModel" />
+    <small class="error" *ngIf="enrollDate.invalid && enrollDate.touched">
+      Enrollment date is required.
+    </small>
+
+    <label>Courses: <span class="required">*</span></label>
+    <div class="courses-container">
+      <div class="course-option" *ngFor="let course of availableCourses">
+        <input type="checkbox" [value]="course" (change)="onCourseToggle($event, course)"
+          [checked]="newStudent.courses.includes(course)" />
+        {{ course }}
+      </div>
+    </div>
+    <small class="error" *ngIf="newStudent.courses.length !== 3">
+      Select exactly 3 courses.
+    </small>
+
+    <button type="submit" [disabled]="!studentForm.valid || newStudent.courses.length !== 3">
+      Add New Student
+    </button>
+  </form>
 </div>

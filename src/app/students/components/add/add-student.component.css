@@ -1,0 +1,67 @@
+.add-student-container {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 1.5rem;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+}
+
+.add-student-container h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.add-student-container label {
+  display: block;
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+.add-student-container input,
+.add-student-container select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 0.25rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+.add-student-container button {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #584858;;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.courses-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.course-option {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.required {
+  color: red;
+}
+
+.error {
+  color: red;
+  font-size: 0.8em;
+}
