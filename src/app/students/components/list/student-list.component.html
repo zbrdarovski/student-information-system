@@ -1,5 +1,5 @@
 <div>
-  <h2>Student List</h2>
+  <h1>Student List</h1>
   <button routerLink="/add">Add New Student</button>
 
   <table>
@@ -13,7 +13,7 @@
         <th>Gender</th>
         <th>Enrollment Date</th>
         <th>Courses</th>
-        <th>Actions</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -40,9 +40,31 @@
     </tbody>
   </table>
 
-  <div class="pagination">
-    <button (click)="setPage(currentPage - 1)" [disabled]="currentPage === 1">&lt; Prev</button>
-    <span>Page {{ currentPage }} / {{ totalPages }}</span>
-    <button (click)="setPage(currentPage + 1)" [disabled]="currentPage === totalPages">Next &gt;</button>
+  <div class="pagination-container">
+    <div class="pagination-info">
+      Showing {{ (currentPage - 1) * pageSize + 1 }} to
+      {{ Math.min(currentPage * pageSize, students.length) }} of
+      {{ students.length }} entries
+    </div>
+
+    <div class="pagination-controls">
+      <label for="pageSize">Show</label>
+      <select id="pageSize" [(ngModel)]="pageSize" (change)="setPage(1)">
+        <option *ngFor="let size of [10, 20, 50, 100]" [value]="size">{{ size }}</option>
+      </select>
+
+      <button (click)="setPage(currentPage - 1)" [disabled]="currentPage === 1"><span
+          style="display: inline-block; transform: scaleX(-1);">➔</span>
+        Prev</button>
+
+      <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
+        <button (click)="setPage(i + 1)" [class.active]="currentPage === i + 1">
+          {{ i + 1 }}
+        </button>
+      </ng-container>
+
+      <button (click)="setPage(currentPage + 1)" [disabled]="currentPage === totalPages">Next <span>➔</span></button>
+    </div>
   </div>
+
 </div>

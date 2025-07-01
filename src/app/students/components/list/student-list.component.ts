@@ -3,11 +3,13 @@ import { Student } from '../../models/student.model';
 import { StudentService } from '../../services/student.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-student-list',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './student-list.component.html',
   styleUrls: ['./student-list.component.css']
 })
@@ -19,6 +21,8 @@ export class StudentListComponent implements OnInit {
   currentPage = 1;
   pageSize = 20;
   totalPages = 1;
+
+  Math = Math;
 
   // Track which student's action menu is open
   openActionMenuId: number | null = null;
