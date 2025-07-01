@@ -1,6 +1,5 @@
 <div>
-  <h1>Student List</h1>
-  <button routerLink="/add">Add New Student</button>
+  <button routerLink="/overview/add">Add New Student</button>
 
   <table>
     <thead>
@@ -32,7 +31,7 @@
           </button>
 
           <div class="actions-menu" *ngIf="openActionMenuId === student.id">
-            <button [routerLink]="['/edit', student.id]">Edit Courses</button>
+            <button [routerLink]="['/overview/edit', student.id]">Edit Courses</button>
             <button (click)="deleteStudent(student.id)">Delete</button>
           </div>
         </td>

@@ -1,0 +1,16 @@
+.app-container {
+    min-height: 100vh;
+    background-color: #efecee;
+}
+
+.app-header {
+    background-color: #fefeff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+}
+
+.app-header h1 {
+    margin: 0;
+    color: #584858;
+}

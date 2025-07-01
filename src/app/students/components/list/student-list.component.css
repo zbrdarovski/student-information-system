@@ -5,14 +5,8 @@ div {
   font-family: 'Segoe UI', sans-serif;
 }
 
-/* Title */
-h1 {
-  color: #584858;
-  margin-bottom: 20px;
-}
-
 /* Add Button */
-button[routerLink="/add"] {
+button[routerLink="/overview/add"] {
   background-color: #584858;
   color: white;
   padding: 10px 16px;
