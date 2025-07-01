@@ -54,7 +54,6 @@ export class AddStudentComponent {
     // Do nothing if form is invalid — let template show validation
     if (
       !/^SID-[A-Z0-9]{8}$/.test(this.newStudent.studentId) ||
-      !/^[A-Z][a-z]+ [A-Z][a-z]+$/.test(this.newStudent.fullName) ||
       !/^[a-z]+\.[a-z]+@university\.edu$/.test(this.newStudent.email) ||
       this.newStudent.courses.length !== 3
     ) {

@@ -21,8 +21,6 @@ export class StudentService {
       const lastName = faker.person.lastName();
 
       const enrollmentDate = format(faker.date.past({ years: 5 }), 'dd/MM/yy');
-      const currentYear = new Date().getFullYear();
-      const enrollmentYear = enrollmentDate;
 
       this.students.push({
         id: this.idCounter++,
@@ -68,5 +66,12 @@ export class StudentService {
 
   getStudentById(id: number): Student | undefined {
     return this.students.find(s => s.id === id);
+  }
+
+  updateStudent(id: number, updated: Student): void {
+    const index = this.students.findIndex(s => s.id === id);
+    if (index > -1) {
+      this.students[index] = { ...updated, id };
+    }
   }
 }

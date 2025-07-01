@@ -1,3 +1,30 @@
-<div>
-  <h2>Edit Student</h2>
+<div class="add-student-container">
+  <form (ngSubmit)="editStudent()" #studentForm="ngForm" novalidate>
+
+    <h2>Edit Courses</h2>
+
+    <label>Student ID:</label>
+    <input type="text" name="studentId" [(ngModel)]="student.studentId" required readonly pattern="SID-[A-Z0-9]{8}"
+      placeholder="e.g. SID-8CH7Y3D2" #studentId="ngModel" />
+
+    <label>Full Name:</label>
+    <input type="text" name="fullName" [(ngModel)]="student.fullName" required readonly pattern="[A-Z][a-z]+ [A-Z][a-z]+"
+      (ngModelChange)="generateEmailFromName($event)" placeholder="e.g. John Doe" #fullName="ngModel" />
+
+    <label>Courses: <span class="required">*</span></label>
+    <div class="courses-container">
+      <div class="course-option" *ngFor="let course of availableCourses">
+        <input type="checkbox" [value]="course" (change)="onCourseToggle($event, course)"
+          [checked]="student.courses.includes(course)" />
+        {{ course }}
+      </div>
+    </div>
+    <small class="error" *ngIf="student.courses.length !== 3">
+      Select exactly 3 courses.
+    </small>
+
+    <button type="submit" [disabled]="!studentForm.valid || student.courses.length !== 3">
+      Edit Courses
+    </button>
+  </form>
 </div>

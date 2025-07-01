@@ -30,8 +30,10 @@
             &#8942;
           </button>
 
-          <div class="actions-menu" *ngIf="openActionMenuId === student.id">
-            <button [routerLink]="['/overview/edit', student.id]">Edit Courses</button>
+          <div class="actions-menu" *ngIf="openActionMenuId === student.id"><button
+              [routerLink]="['/overview/edit', student.id]" [queryParams]="{ page: currentPage }">
+              Edit Courses
+            </button>
             <button (click)="deleteStudent(student.id)">Delete</button>
           </div>
         </td>
