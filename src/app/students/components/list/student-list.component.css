@@ -15,12 +15,14 @@ button[routerLink="/overview/add"] {
   cursor: pointer;
   font-weight: 500;
   margin-bottom: 16px;
+  transition: background-color 0.3s ease;
 }
 
 button[routerLink="/add"]:hover {
   background-color: #584858;
 }
 
+/* Table Styles */
 table {
   width: 100%;
   border-collapse: separate;
@@ -40,6 +42,7 @@ th,
 td {
   padding: 12px;
   text-align: left;
+  vertical-align: middle;
 }
 
 tbody tr:nth-child(odd) {
@@ -59,6 +62,11 @@ tbody tr:nth-child(even) {
   width: 30px;
   height: 30px;
   border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.menu-button:hover {
+  background-color: #cfc8ce;
 }
 
 .actions-menu {
@@ -69,6 +77,8 @@ tbody tr:nth-child(even) {
   z-index: 10;
   width: fit-content;
   padding: 0;
+  border-radius: 5px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .actions-menu button {
@@ -79,6 +89,7 @@ tbody tr:nth-child(even) {
   text-align: left;
   cursor: pointer;
   border: 1px solid #ccc;
+  transition: background-color 0.3s ease;
 }
 
 .actions-menu button:hover {
@@ -95,10 +106,13 @@ tbody tr:nth-child(even) {
   font-family: 'Segoe UI', sans-serif;
   font-size: 14px;
   background-color: #fefeff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .pagination-info {
   background-color: #fefeff;
+  font-weight: 500;
 }
 
 .pagination-controls {
@@ -110,6 +124,7 @@ tbody tr:nth-child(even) {
 
 .pagination-controls label {
   margin-right: 4px;
+  font-weight: 500;
 }
 
 .pagination-controls select {
@@ -119,6 +134,12 @@ tbody tr:nth-child(even) {
   background-color: white;
   font-size: 14px;
   cursor: pointer;
+  transition: border-color 0.3s ease;
+}
+
+.pagination-controls select:focus {
+  outline: none;
+  border-color: #584858;
 }
 
 .pagination-controls button {
@@ -128,6 +149,7 @@ tbody tr:nth-child(even) {
   background-color: white;
   cursor: pointer;
   font-size: 14px;
+  transition: all 0.3s ease;
 }
 
 .pagination-controls button.active {
@@ -138,4 +160,349 @@ tbody tr:nth-child(even) {
 .pagination-controls button:disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+  background-color: #f5f5f5;
+}
+
+/* Large Tablets and Small Desktops (768px - 1024px) */
+@media screen and (max-width: 1024px) {
+  div {
+    padding: 20px;
+  }
+  
+  th, td {
+    padding: 10px 8px;
+    font-size: 14px;
+  }
+  
+  .pagination-container {
+    padding: 10px 12px;
+  }
+}
+
+/* Tablets (768px and below) */
+@media screen and (max-width: 768px) {
+  div {
+    padding: 16px;
+  }
+
+  /* Make add button full width */
+  button[routerLink="/overview/add"] {
+    width: 100%;
+    padding: 12px 16px;
+    font-size: 16px;
+    margin-bottom: 20px;
+  }
+
+  /* Hide less important columns on tablets */
+  th:nth-child(4), /* Phone Number */
+  td:nth-child(4),
+  th:nth-child(6), /* Gender */
+  td:nth-child(6) {
+    display: none;
+  }
+
+  th, td {
+    padding: 8px 6px;
+    font-size: 13px;
+  }
+
+  /* Adjust action menu for touch devices */
+  .menu-button {
+    width: 36px;
+    height: 36px;
+    font-size: 20px;
+  }
+
+  .actions-menu {
+    min-width: 140px;
+  }
+
+  .actions-menu button {
+    padding: 12px 16px;
+    font-size: 14px;
+  }
+
+  /* Stack pagination on smaller tablets */
+  .pagination-container {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .pagination-controls {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+}
+
+/* Mobile Phones (480px and below) */
+@media screen and (max-width: 480px) {
+  div {
+    padding: 12px;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  /* Hide table and show card layout */
+  table, thead, tbody, th, td, tr {
+    display: block;
+  }
+
+  thead tr {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tbody tr {
+    background-color: white;
+    margin-bottom: 16px;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid #584858;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: white;
+  }
+
+  td {
+    border: none;
+    position: relative;
+    padding: 8px 0 8px 50%;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* Add labels for mobile cards */
+  td:before {
+    content: attr(data-label) ": ";
+    position: absolute;
+    left: 0;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    font-weight: bold;
+    color: #584858;
+  }
+
+  /* Style specific data cells */
+  td:nth-child(1):before { content: "ID: "; }
+  td:nth-child(2):before { content: "Name: "; }
+  td:nth-child(3):before { content: "Email: "; }
+  td:nth-child(5):before { content: "DOB: "; }
+  td:nth-child(7):before { content: "Enrolled: "; }
+  td:nth-child(8):before { content: "Courses: "; }
+  td:nth-child(9):before { content: "Actions: "; }
+
+  /* Hide less important data on mobile */
+  td:nth-child(4), /* Phone */
+  td:nth-child(6)  /* Gender */
+  {
+    display: none;
+  }
+
+  /* Courses column - allow wrapping */
+  td:nth-child(8) {
+    white-space: normal;
+    word-wrap: break-word;
+    max-width: 200px;
+  }
+
+  /* Actions column */
+  td:nth-child(9) {
+    padding-top: 16px;
+    text-align: center;
+    padding-left: 0;
+  }
+
+  td:nth-child(9):before {
+    display: none;
+  }
+
+  /* Improve action menu positioning for mobile */
+  .actions-menu {
+    position: fixed;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  }
+
+  .actions-menu button {
+    padding: 16px 20px;
+    font-size: 16px;
+    border: none;
+    border-bottom: 1px solid #eee;
+  }
+
+  .actions-menu button:last-child {
+    border-bottom: none;
+  }
+
+  /* Mobile pagination improvements */
+  .pagination-container {
+    padding: 16px;
+    margin-top: 20px;
+  }
+
+  .pagination-info {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .pagination-controls {
+    gap: 12px;
+  }
+
+  .pagination-controls button {
+    padding: 8px 12px;
+    font-size: 16px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .pagination-controls select {
+    padding: 8px 12px;
+    font-size: 16px;
+    min-height: 44px;
+  }
+}
+
+/* Extra Small Mobile (320px and below) */
+@media screen and (max-width: 320px) {
+  div {
+    padding: 8px;
+  }
+
+  button[routerLink="/overview/add"] {
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+
+  tbody tr {
+    padding: 12px;
+    margin-bottom: 12px;
+  }
+
+  td {
+    padding: 6px 0 6px 45%;
+    font-size: 12px;
+  }
+
+  td:before {
+    font-size: 11px;
+    width: 40%;
+  }
+
+  .pagination-container {
+    padding: 12px 8px;
+  }
+
+  .pagination-controls {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .pagination-controls button,
+  .pagination-controls select {
+    width: 100%;
+    max-width: 200px;
+  }
+}
+
+/* Landscape orientation adjustments */
+@media screen and (max-width: 768px) and (orientation: landscape) {
+  /* Show table format in landscape on tablets */
+  table, thead, tbody, th, td, tr {
+    display: table;
+  }
+
+  thead tr {
+    position: static;
+  }
+
+  tbody tr {
+    display: table-row;
+    background-color: #fefeff;
+    margin-bottom: 0;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    border-left: none;
+  }
+
+  tbody tr:nth-child(even) {
+    background-color: #f6f4f7;
+  }
+
+  td {
+    display: table-cell;
+    position: static;
+    padding: 8px 6px;
+    text-align: left;
+    white-space: nowrap;
+  }
+
+  td:before {
+    display: none;
+  }
+
+  /* Still hide some columns in landscape */
+  th:nth-child(4),
+  td:nth-child(4),
+  th:nth-child(6),
+  td:nth-child(6) {
+    display: none;
+  }
+
+  .actions-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    transform: none;
+    width: fit-content;
+  }
+}
+
+/* Print styles */
+@media print {
+  .menu-button,
+  .actions-menu,
+  .pagination-container,
+  button[routerLink="/overview/add"] {
+    display: none !important;
+  }
+
+  div {
+    background-color: white !important;
+    padding: 0 !important;
+  }
+
+  table {
+    box-shadow: none !important;
+    background-color: white !important;
+  }
+
+  tbody tr {
+    background-color: white !important;
+    border-bottom: 1px solid #ccc;
+  }
+
+  th, td {
+    padding: 8px 4px !important;
+    font-size: 12px !important;
+  }
 }
